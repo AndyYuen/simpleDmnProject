@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://github.com/kiegroup/drools/kie-dmn/_EBCCA600-018D-4DB8-B047-6C2178569095" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" id="_FA6ECD88-DA35-4B33-B0FE-762655F9D5DF" name="demoDMN" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://github.com/kiegroup/drools/kie-dmn/_EBCCA600-018D-4DB8-B047-6C2178569095">
+  <dmn:extensionElements/>
+  <dmn:decision id="_E9B62B73-2D9E-48C0-AE83-A7784C3AB591" name="Age Classification">
+    <dmn:variable id="_27407E35-DE27-4553-B290-9576895D0D30" name="Age Classification" typeRef="string"/>
+    <dmn:informationRequirement id="_0736D5F2-E856-4709-B2CD-9A55CAF06A6C">
+      <dmn:requiredInput href="#_5F2EEC15-3C7E-41F1-B8F0-D3B0E43342C8"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_7C7D5F3A-42F7-4E30-A9B9-D8F0500E78B7">
+      <dmn:requiredKnowledge href="#_1D14D941-1C17-46D1-BC47-35336B465B30"/>
+    </dmn:knowledgeRequirement>
+    <dmn:invocation id="_7E637981-E81F-4C2C-B350-BF1E775D9487" typeRef="Any">
+      <dmn:literalExpression id="_F30B3620-AD3C-4813-B363-2DC1A42E97D1" typeRef="Any">
+        <dmn:text>Age Classification Table</dmn:text>
+      </dmn:literalExpression>
+      <dmn:binding>
+        <dmn:parameter id="_0F960E45-F911-4FDF-8558-AC0D3F50DDC4" name="age" typeRef="number"/>
+        <dmn:literalExpression id="_20BCC9F3-4EB6-4BFE-AF7F-596092F56758" typeRef="Any">
+          <dmn:text>Age</dmn:text>
+        </dmn:literalExpression>
+      </dmn:binding>
+    </dmn:invocation>
+  </dmn:decision>
+  <dmn:inputData id="_5F2EEC15-3C7E-41F1-B8F0-D3B0E43342C8" name="Age">
+    <dmn:variable id="_DFCD7D49-55CC-488D-BC3B-EF44D07F4A9C" name="Age" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:businessKnowledgeModel id="_1D14D941-1C17-46D1-BC47-35336B465B30" name="Age Classification Table">
+    <dmn:variable id="_00279867-79C1-41F0-BA58-96FEAEC21C8B" name="Age Classification Table" typeRef="string"/>
+    <dmn:encapsulatedLogic id="_054B060F-5992-4273-99C7-9CEC4A3AE7E9" typeRef="Any" kind="FEEL">
+      <dmn:formalParameter id="_87332C13-EE01-4868-857D-46B85A78286C" name="age" typeRef="number"/>
+      <dmn:decisionTable id="_3AF3918B-50B9-456F-A4BE-773E333989CC" typeRef="Any" hitPolicy="ANY" preferredOrientation="Rule-as-Row">
+        <dmn:input id="_242CC856-51DB-4BCB-87A2-F916D6D720A2">
+          <dmn:inputExpression id="_FC4181B1-7A51-49C6-9850-21D8266E6E2B" typeRef="number">
+            <dmn:text>age</dmn:text>
+          </dmn:inputExpression>
+        </dmn:input>
+        <dmn:output id="_06E551DE-E7F3-40B6-BF6D-8476274E52B0" typeRef="Any"/>
+        <dmn:rule id="_9FDFDE6B-2D70-43C7-B242-607DA7D673BD">
+          <dmn:inputEntry id="_02BAEB4B-58BF-46A6-91E8-67DA2E0D4332">
+            <dmn:text>&lt;18</dmn:text>
+          </dmn:inputEntry>
+          <dmn:outputEntry id="_8F023390-F7AE-413A-A55E-7108558A8078" typeRef="Any">
+            <dmn:text>"Underaged"</dmn:text>
+          </dmn:outputEntry>
+        </dmn:rule>
+        <dmn:rule id="_3486F923-E2E2-45A2-9947-9FB7CF90BC08">
+          <dmn:inputEntry id="_045DCA8B-3548-47DF-8DA0-443DDE97A1D7">
+            <dmn:text>[18..65)</dmn:text>
+          </dmn:inputEntry>
+          <dmn:outputEntry id="_AD3CDCE2-518D-4A7C-9882-97D2EFC32C08" typeRef="Any">
+            <dmn:text>"Adult"</dmn:text>
+          </dmn:outputEntry>
+        </dmn:rule>
+        <dmn:rule id="_6BB67FF1-AD74-4CC2-9F88-BA38CE2E849E">
+          <dmn:inputEntry id="_A19D8C06-BA0E-4396-BC8F-C93512681153">
+            <dmn:text>&gt;=65</dmn:text>
+          </dmn:inputEntry>
+          <dmn:outputEntry id="_5CA4763D-40FF-437F-9BFC-A869D28E46FE" typeRef="Any">
+            <dmn:text>"Senior"</dmn:text>
+          </dmn:outputEntry>
+        </dmn:rule>
+      </dmn:decisionTable>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmndi:DMNDI xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/">
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="dmnshape-_E9B62B73-2D9E-48C0-AE83-A7784C3AB591" dmnElementRef="_E9B62B73-2D9E-48C0-AE83-A7784C3AB591" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="278" y="102" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_5F2EEC15-3C7E-41F1-B8F0-D3B0E43342C8" dmnElementRef="_5F2EEC15-3C7E-41F1-B8F0-D3B0E43342C8" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="277" y="296" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_1D14D941-1C17-46D1-BC47-35336B465B30" dmnElementRef="_1D14D941-1C17-46D1-BC47-35336B465B30" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="505" y="102" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_0736D5F2-E856-4709-B2CD-9A55CAF06A6C" dmnElementRef="_0736D5F2-E856-4709-B2CD-9A55CAF06A6C">
+        <di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="327" y="321"/>
+        <di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="328" y="127"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_7C7D5F3A-42F7-4E30-A9B9-D8F0500E78B7" dmnElementRef="_7C7D5F3A-42F7-4E30-A9B9-D8F0500E78B7">
+        <di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="555" y="127"/>
+        <di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="328" y="127"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
