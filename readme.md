@@ -1,4 +1,3 @@
-Repository Init Content
-=======================
+# RED HAT DECISION MANAGER 7 - A Simple DMN Project using Decision Node and Business Knowledge Model.
 
-Your project description here.
+## Status: In-Progress
